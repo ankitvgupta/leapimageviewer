@@ -1,5 +1,1 @@
-leapimageviewer
-===============
-
-An Image Viewer Built with the Leap Motion SDK
-This is starting as a final project for CS50 at Harvard University.
+This is an image viewer built using the Leap Motion SDK. It will be used as a CS50 Final project at Harvard University.
