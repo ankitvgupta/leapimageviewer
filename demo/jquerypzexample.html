@@ -1,0 +1,495 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>jQuery PanZoom Example - by Ben Lumley</title>
+    
+      <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script> 
+      <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+      <script type="text/javascript" src="https://raw.github.com/brandonaaron/jquery-mousewheel/master/jquery.mousewheel.js"></script>
+      <script type="text/javascript" src="http://benlumley.co.uk/dev/panzoom/jquery-panzoom.js"></script>
+      <link rel="stylesheet" type="text/css" media="screen" href="http://benlumley.co.uk/dev/panzoom/example/style.css" />
+      <script type="text/javascript">
+	$(document).ready(function () {
+        function initPanZoom() {
+          $('#pan img').panZoom({
+        'zoomIn'   : $('#zoomin'),
+        'zoomOut' : $('#zoomout'),
+        'panUp'  :$('#panup'),
+        'panDown':$('#pandown'),
+        'panLeft':$('#panleft'),
+        'panRight':$('#panright'),
+            'fit'       :   $('#fit'),
+            'destroy'   :   $('#destroy'),
+            'out_x1'    :   $('#x1'),
+            'out_y1'    :   $('#y1'),
+            'out_x2'    :   $('#x2'),
+            'out_y2'    :   $('#y2'),
+            'directedit':   true,
+            'debug'     :   false
+          });
+        };
+
+        initPanZoom();
+
+	// init the image switcher
+	$('#images img').bind('click', function () {
+	$('#pan img').attr('src', $(this).attr('src'));
+	});
+
+        // init the init button (for testing destroy/recreate)
+        $('#reinit').bind('click', function (event) {
+          if ($('#pan img').data('panZoom')) {
+            alert('Click destroy before trying to re-initialise panZoom');
+            return;
+          }
+          event.preventDefault();
+          initPanZoom();
+        });
+
+	});
+	</script>
+      </head>
+  
+  <body>
+    <div class="wrapper">
+      <h1>jQuery PanZoom Example</h1>
+
+      <div class="me">
+        <img src="https://secure.gravatar.com/avatar/97fd695f2843e74355ed065489179417?s=80" alt="benlumley">
+        <p>
+          jQuery PanZoom by Ben Lumley <br />
+          <a href="http://www.twitter.com/benlumley" target="_blank">@benlumley</a><br />
+          <a href="http://benlumley.co.uk/" target="_blank">http://benlumley.co.uk/</a> <br />
+          <a href="https://github.com/benlumley/jQuery-PanZoom" target="_blank">https://github.com/benlumley/jQuery-PanZoom</a>
+        </p>
+      </div>
+
+
+      <div id="pan">
+        <img src="http://benlumley.co.uk/dev/panzoom/example/sample2.jpg">
+      </div>
+
+      <div id="images">
+        <h3>Switch Images</h3>
+        <p>Click an image below to switch the image above to it.</p>
+        <img src="http://benlumley.co.uk/dev/panzoom/example/sample.jpg" width="100" height="67">
+        <img src="http://benlumley.co.uk/dev/panzoom/example/sample2.jpg" width="100" height="67">
+        <img src="http://benlumley.co.uk/dev/panzoom/example/sample3.jpg" width="100" height="67">
+      </div>
+
+      <div id="controls">
+        <h2>Controls</h2>
+        <h3>Zoom</h3>
+        <a id="zoomin" href="#">
+          <img src="http://benlumley.co.uk/dev/panzoom/example/icons/zoom_in.png"><br />
+          Zoom In
+        </a>
+        <a id="zoomout" href="#">
+          <img src="http://benlumley.co.uk/dev/panzoom/example/icons/zoom_out.png"><br />
+          Zoom Out
+        </a>
+
+        <h3>Pan</h3>
+        <a id="panup" href="#">
+          <img src="http://benlumley.co.uk/dev/panzoom/example/icons/arrow_up.png"><br />
+          Pan Up
+        </a>
+        <a id="pandown" href="#">
+          <img src="http://benlumley.co.uk/dev/panzoom/example/icons/arrow_down.png"><br />
+          Pan Down
+        </a>
+        <a id="panleft" href="#">
+          <img src="http://benlumley.co.uk/dev/panzoom/example/icons/arrow_left.png"><br />
+          Pan Left
+        </a>
+        <a id="panright" href="#">
+          <img src="http://benlumley.co.uk/dev/panzoom/example/icons/arrow_right.png"><br />
+          Pan Right
+        </a>
+
+        <h3>Fit/Destroy</h3>
+        <a id="fit" href="#">
+          <img src="http://benlumley.co.uk/dev/panzoom/example/icons/arrow_out.png"><br />
+          fit/reset
+        </a>
+        <a id="destroy" href="#">
+          <img src="http://benlumley.co.uk/dev/panzoom/example/icons/cross.png"><br />
+          destroy
+        </a>
+        <a id="reinit" href="#">
+          <img src="http://benlumley.co.uk/dev/panzoom/example/icons/tick.png"><br />
+          re-initialise
+        </a>
+
+        <h3>Other Controls</h3>
+        <p>You can also drag the image around or zoom with your mousewheel when hovering. Double click will zoom too.</p>
+      </div>
+
+      <div id="output">
+        <h2>Output</h2>
+        <p>View the current co-ordinates live. You will probably want hidden fields, but whilst they are visible, try changing the numbers.</p>
+        <table>
+          <tr>
+            <td>x1: <input type="text" name="x1" value="0" id="x1"></td><td>x2: <input type="text" name="x2" value="0" id="x2"></td>
+          </tr>
+          <tr>
+            <td>y1: <input type="text" name="y1" value="0" id="y1"></td><td>y2: <input type="text" name="y2" value="0" id="y2"></td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="atribution">
+        <h2>Attribution</h2>
+        <p>Example images from flickr user kevindooley <a href="http://www.flickr.com/photos/pagedooley/3777170527" target="_blank">here</a>, <a href="http://www.flickr.com/photos/pagedooley/5401706245/" target="_blank">here</a> and <a href="http://www.flickr.com/photos/pagedooley/5402307136/in/photostream/" target="_blank">here</a>, licensed under Creative Commons Attribution 2.0 Generic</p>
+        <p>Icons from <a href="http://www.famfamfam.com/lab/icons/silk/">http://www.famfamfam.com/lab/icons/silk/</a>
+      </div>
+    </div>
+      <a href="https://github.com/benlumley/jQuery-PanZoom" target="_blank"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://a248.e.akamai.net/assets.github.com/img/71eeaab9d563c2b3c590319b398dd35683265e85/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub"></a>
+     
+  <script src="//js.leapmotion.com/0.2.0/leap.min.js"></script>
+
+
+  <script>
+
+    var frame;
+    // Global keyTap and screenTap arrays
+    var keyTaps = [];
+    var KEYTAP_LIFETIME   =  .5;
+    var KEYTAP_START_SIZE = 15;
+
+    var screenTaps = [];
+    var SCREENTAP_LIFETIME   = 1;
+    var SCREENTAP_START_SIZE = 30;
+    
+
+    /*
+      
+      The leapToScene function takes a position in leap space 
+      and converts it to the space in the canvas.
+      
+      It does this by using the interaction box, in order to 
+      make sure that every part of the canvas is accesible 
+      in the interaction area of the leap
+
+    */
+
+    function leapToScene( leapPos ){
+
+      // Gets the interaction box of the current frame
+      var iBox = frame.interactionBox;
+
+      // Gets the left border and top border of the box
+      // In order to convert the position to the proper
+      // location for the canvas
+      var left = iBox.center[0] - iBox.size[0]/2;
+      var top = iBox.center[1] + iBox.size[1]/2;
+
+      // Takes our leap coordinates, and changes them so
+      // that the origin is in the top left corner 
+      var x = leapPos[0] - left;
+      var y = leapPos[1] - top;
+
+      // Divides the position by the size of the box
+      // so that x and y values will range from 0 to 1
+      // as they lay within the interaction box
+      x /= iBox.size[0];
+      y /= iBox.size[1];
+
+      // Uses the height and width of the canvas to scale
+      // the x and y coordinates in a way that they 
+      // take up the entire canvas
+      x *= width;
+      y *= height;
+
+      // Returns the values, making sure to negate the sign 
+      // of the y coordinate, because the y basis in canvas 
+      // points down instead of up
+      return [ x , -y ];
+
+    }
+
+    function onCircle( gesture ){
+
+      /*
+      
+        Setting up our parameters
+      
+      */
+
+      // First get the position using our leapToScene function
+      var pos = leapToScene( gesture.center );
+
+      // Assigning the radius
+      var radius = gesture.radius;
+
+      var clockwise = false;
+
+      if( gesture.normal[2]  <= 0 ){
+
+        clockwise = true;
+
+      }
+
+      /*
+      
+        Setting up our drawing style
+
+      */
+
+      // Setting up the style for the stroke, and fill
+      c.fillStyle   = "#39AECF";
+      c.strokeStyle = "#39AECF";
+      c.lineWidth   = 5;
+
+
+      // Creating the path for the finger circle
+      c.beginPath();
+
+      // Draw a full circle of radius 6 at the finger position
+      c.arc(pos[0], pos[1], radius, 0, Math.PI*2); 
+
+      c.closePath();
+
+      if( clockwise )
+        c.stroke();
+      else
+        c.fill();
+
+    }
+
+
+    function onSwipe( gesture ){
+
+      var startPos = leapToScene( gesture.startPosition );
+      var pos = leapToScene( gesture.position);
+      
+      if (pos[1] > pos[0])
+          $('#pan img').panZoom( 'zoomOut');
+      else
+          $('#pan img').panZoom( 'zoomIn');
+
+    }
+
+
+    function onKeyTap( gesture ){
+
+      var pos  = leapToScene( gesture.position );
+    
+      var time = frame.timestamp;
+
+      keyTaps.push( [ pos[0] , pos[1] , time ] );
+    
+  $('#pan img').panZoom( 'zoomOut');
+
+    }
+
+    function updateKeyTaps(){
+
+      for( var i = 0; i < keyTaps.length; i++ ){
+
+        var keyTap = keyTaps[i];
+        var age = frame.timestamp - keyTaps[i][2];
+        age /= 1000000;
+
+        if( age >= KEYTAP_LIFETIME ){
+          keyTaps.splice( i , 1 );
+        }
+
+      }
+
+    }
+
+
+    function drawKeyTaps(){
+
+      for( var i = 0; i < keyTaps.length; i++ ){
+
+        var keyTap = keyTaps[i];
+
+        var x = keyTap[0];
+        var y = keyTap[1];
+
+        var age = frame.timestamp - keyTap[2];
+        age /= 1000000;
+
+        var completion = age / KEYTAP_LIFETIME;
+        var timeLeft = 1 - completion;
+
+
+        /*
+        
+          Static Ring
+
+        */
+        c.strokeStyle = "#FF2300";
+        c.lineWidth   = 3;
+        
+        c.beginPath();
+        c.arc( x , y , KEYTAP_START_SIZE , 0 , Math.PI*2); 
+        c.closePath();
+        c.stroke();
+
+
+
+        var opacity = timeLeft;
+        var radius = KEYTAP_START_SIZE * timeLeft;
+        //console.log( opacity );
+
+        c.fillStyle = "rgba( 256 , 33 , 0 , " + opacity + ")";
+
+        // Creating the path for the finger circle
+        c.beginPath();
+        c.arc( x , y , radius , 0 , Math.PI*2); 
+        c.closePath();
+        c.fill();        
+
+      }
+
+    }
+
+    function onScreenTap( gesture ){
+
+      var pos  = leapToScene( gesture.position );
+    
+      var time = frame.timestamp;
+
+      screenTaps.push( [ pos[0] , pos[1] , time ] );
+
+    }
+
+    function updateScreenTaps(){
+
+      for( var i = 0; i < screenTaps.length; i++ ){
+
+        var screenTap = screenTaps[i];
+        var age = frame.timestamp - screenTaps[i][2];
+        age /= 1000000;
+
+        if( age >= SCREENTAP_LIFETIME ){
+          screenTaps.splice( i , 1 );
+        }
+
+      }
+
+    }
+
+    function drawScreenTaps(){
+
+      for( var i = 0; i < screenTaps.length; i++ ){
+
+        var screenTap = screenTaps[i];
+
+        var x = screenTap[0];
+        var y = screenTap[1];
+
+        var age = frame.timestamp - screenTap[2];
+        age /= 1000000;
+
+        var completion = age / SCREENTAP_LIFETIME;
+        var timeLeft = 1 - completion;
+
+        /*
+        
+        Drawing the static ring
+
+        */
+        c.strokeStyle = "#FFB300";
+        c.lineWidth   = 3;
+
+        // Save the canvas context, so that we can restore it
+        // and have it un affected
+        c.save();
+
+        // Translate the contex and rotate around the
+        // center of the  square
+        c.translate( x , y );
+
+        //Starting x and y ( compared to the pivot point )
+        var left = -SCREENTAP_START_SIZE / 2;
+        var top = -SCREENTAP_START_SIZE / 2;
+        var width = SCREENTAP_START_SIZE;
+        var height = SCREENTAP_START_SIZE;
+
+        // Draw the rectangle
+        c.strokeRect( left , top , width , height );
+
+        // Restore the context, so we don't draw everything rotated
+        c.restore();
+
+
+        // Drawing the non-static part
+
+        var size = SCREENTAP_START_SIZE * timeLeft;
+        var opacity =  timeLeft;
+        var rotation = timeLeft * Math.PI;
+        
+        c.fillStyle = "rgba( 255 , 179 , 0 , " + opacity + ")";
+	  
+        c.save();
+
+        c.translate( x , y );
+        c.rotate( rotation );
+       
+
+
+      }
+
+    }
+
+    // Creates our Leap Controller
+    var controller = new Leap.Controller({enableGestures:true});
+
+    // Tells the controller what to do every time it sees a frame
+    controller.on( 'frame' , function( data ){
+
+      // Assigning the data to the global frame object
+      frame = data;
+
+      for( var i = 0; i < frame.gestures.length; i++ ){
+
+        var gesture = frame.gestures[i];
+
+
+        var type = gesture.type;
+        
+        switch( type ){
+          
+          case "circle":
+            onCircle( gesture );
+            break;
+            
+          case "swipe":
+            onSwipe( gesture );
+            break;
+          
+          case "screenTap":
+            onScreenTap( gesture );
+            break;
+
+          case "keyTap":
+            onKeyTap( gesture );
+            break;
+   
+        }
+
+      }
+
+      updateKeyTaps();
+      drawKeyTaps();
+
+      updateScreenTaps();
+      drawScreenTaps();
+
+
+    });
+    
+    // Get frames rolling by connecting the controller
+    controller.connect();
+
+
+    </script>
+
+  </body>
+</html>
+
