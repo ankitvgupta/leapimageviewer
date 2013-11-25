@@ -1,0 +1,80 @@
+<html>
+<head>
+<title>Gestures</title>
+</head>
+<body>
+
+<canvas id="canvas"></canvas>
+<script src="//js.leapmotion.com/0.2.0/leap.min.js"></script>
+
+ <script>
+   var canvas = document.getElementById( 'canvas' );
+
+   var c = canvas.getContext( '2d');
+
+   var width = canvas.width;
+   var height = canvas.height;
+
+   var frame;
+
+   function leapToScene ( leapPos){
+   
+   var iBox = frame.interactionBox;
+
+   var left = iBox.center[0] - iBox.size[0]/2;
+   var top = iBox.center[1] + iBox.size[1]/2;
+
+   var x = leapPos[0] - left;
+   var y = leapPos[1] - top;
+
+   x /= iBox.size[0];
+   y /= iBox.size[1];
+
+   return [ x, -y];
+}
+
+var controller = new Leap.Controller({ enableGestures: true });
+
+controller.on( 'frame' , function( data ){
+   frame = data;
+
+   c.clearRect( 0, 0, width, height );
+
+   for( var i = 0; i < frame.gestures.length; i++){
+
+
+   var gesture = frame.gestures[i];
+   var type = gesture.type;
+
+   switch( type ){
+
+    case "circle":
+      onCircle( gesture );
+      break;
+    case "swipe":
+	onSwipe( gesture );
+	break;
+    case "screenTap":
+	onScreenTap( gesture );
+	break;
+    case "keyTap"
+        onKeyTap( gesture );
+        break;
+    }
+
+
+
+
+
+
+   }
+
+
+});
+
+controller.connect();
+
+</script>
+
+</body>
+</html>
