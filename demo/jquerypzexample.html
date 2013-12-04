@@ -7,8 +7,8 @@
       <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script> 
       <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
       <script type="text/javascript" src="https://raw.github.com/brandonaaron/jquery-mousewheel/master/jquery.mousewheel.js"></script>
-      <script type="text/javascript" src="http://benlumley.co.uk/dev/panzoom/jquery-panzoom.js"></script>
-      <link rel="stylesheet" type="text/css" media="screen" href="http://benlumley.co.uk/dev/panzoom/example/style.css" />
+      <script type="text/javascript" src="js/jquery-panzoom.js"></script>
+      <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
       <script type="text/javascript">
 	$(document).ready(function () {
         function initPanZoom() {
@@ -151,16 +151,26 @@
 
 
   <script>
-
+// This is the starting of the Leap Motion script
     var frame;
     // Global keyTap and screenTap arrays
     var keyTaps = [];
     var KEYTAP_LIFETIME   =  .5;
     var KEYTAP_START_SIZE = 15;
 
+    var circleTimes = [];
+
     var screenTaps = [];
     var SCREENTAP_LIFETIME   = 1;
     var SCREENTAP_START_SIZE = 30;
+    currentImage = 0;
+    
+    var images = [
+    "http://benlumley.co.uk/dev/panzoom/example/sample.jpg",
+    "http://benlumley.co.uk/dev/panzoom/example/sample2.jpg",
+    "http://benlumley.co.uk/dev/panzoom/example/sample3.jpg"
+];
+
     
 
     /*
@@ -238,7 +248,7 @@
       */
 
       // Setting up the style for the stroke, and fill
-      c.fillStyle   = "#39AECF";
+      /*c.fillStyle   = "#39AECF";
       c.strokeStyle = "#39AECF";
       c.lineWidth   = 5;
 
@@ -250,26 +260,45 @@
       c.arc(pos[0], pos[1], radius, 0, Math.PI*2); 
 
       c.closePath();
-
-      if( clockwise )
-        c.stroke();
-      else
-        c.fill();
-
-    }
+       */
+      //if( clockwise )
+        //c.stroke();
+    
+        //c.fill();
+}
+   
 
 
     function onSwipe( gesture ){
 
-      var startPos = leapToScene( gesture.startPosition );
-      var pos = leapToScene( gesture.position);
-      
-      if (pos[1] > pos[0])
-          $('#pan img').panZoom( 'zoomOut');
-      else
-          $('#pan img').panZoom( 'zoomIn');
 
-    }
+       var startPos = leapToScene( gesture.startPosition );
+       var pos = leapToScene( gesture.position);
+
+       unmodstartPos = gesture.startPosition;
+       unmodendPos = gesture.position;
+
+       unmodDeltaY = Math.abs(gesture.startPosition[1] - gesture.position[1]);
+       unmodDeltaX = Math.abs(gesture.startPosition[0] - gesture.position[0]);
+
+      if (unmodDeltaY > unmodDeltaX)
+      {   
+      if (pos[1] > startPos[1])
+         $('#pan img').panZoom( 'zoomIn');
+      else if(pos[1] < startPos[1])
+         $('#pan img').panZoom( 'zoomOut');
+      }
+      else
+      {  
+      if(pos[0] > startPos[0])
+          $('#pan img').panZoom( 'panRight');
+      else if(pos[0] < startPos[0])
+          $('#pan img').panZoom( 'panLeft');  
+      }
+
+
+
+  }
 
 
     function onKeyTap( gesture ){
@@ -278,11 +307,35 @@
     
       var time = frame.timestamp;
 
-      keyTaps.push( [ pos[0] , pos[1] , time ] );
+      // keyTaps.push( [ pos[0] , pos[1] , time ] );
     
-  $('#pan img').panZoom( 'zoomOut');
+   //$('#pan img').panZoom( 'zoomOut');
 
     }
+
+     function onNextImage( gesture ){
+
+        $('#pan img').attr('src', images[currentImage]);
+
+    }
+    function onPrevImage( gesture ){
+
+        $('#pan img').attr('src', images[currentImage]);
+
+    }
+
+    function onRefresh( hand ){
+        console.log("The number of fingers is " + hand.pointables.length);
+
+        if(hand.pointables.length == 1)
+        {
+          console.log("Refreshed!");
+          //$( "#destroy" ).trigger( "click" );
+          //$( "#reinit" ).trigger( "click" );
+          $('#pan img').panZoom( 'fit');  
+        }
+    }
+
 
     function updateKeyTaps(){
 
@@ -321,7 +374,7 @@
         
           Static Ring
 
-        */
+        
         c.strokeStyle = "#FF2300";
         c.lineWidth   = 3;
         
@@ -343,7 +396,7 @@
         c.arc( x , y , radius , 0 , Math.PI*2); 
         c.closePath();
         c.fill();        
-
+        */
       }
 
     }
@@ -393,7 +446,7 @@
         
         Drawing the static ring
 
-        */
+        
         c.strokeStyle = "#FFB300";
         c.lineWidth   = 3;
 
@@ -430,7 +483,7 @@
 
         c.translate( x , y );
         c.rotate( rotation );
-       
+        */
 
 
       }
@@ -439,40 +492,117 @@
 
     // Creates our Leap Controller
     var controller = new Leap.Controller({enableGestures:true});
-
+    circleTimes.push("0");
+     var firstcircle = 1;
     // Tells the controller what to do every time it sees a frame
     controller.on( 'frame' , function( data ){
+   
 
       // Assigning the data to the global frame object
       frame = data;
 
       for( var i = 0; i < frame.gestures.length; i++ ){
 
+
+        
         var gesture = frame.gestures[i];
+        //gestures.push(gesture.timestamp);
 
 
         var type = gesture.type;
-        
-        switch( type ){
+
+        if (frame.hands.length > 0) {
+          for (var k = 0; k < frame.hands.length; k++) {
+            var hand = frame.hands[k];
+            var normalDirec = hand.palmNormal[1];
+            //console.log(handVec);
+            console.log(hand.palmNormal);
+          // var direct = hand.palmNormal().getY();
+
+          //var direc = firstHand.palmNormal().getY;
+          //alert(direc);
+
+
+        if(frame.fingers.length != 1)
+        {
+          switch( type ){
           
           case "circle":
-            onCircle( gesture );
-            break;
+            if(firstcircle == 1)
+            {
+              circleTimes[0] = frame.timestamp;
+              firstcircle = 0;
+              onRefresh ( hand );
+            }
+            if(frame.timestamp - circleTimes[0] <= 1000000)
+            {
+              console.log("Initial time was " + circleTimes[0]);
+              console.log("Cannot refresh so soon...  " + (frame.timestamp - circleTimes[0]));
+              break;
+            }
+            else
+            {
+                circleTimes[0] = frame.timestamp; 
+                onRefresh( hand );
+            }
+            
             
           case "swipe":
             onSwipe( gesture );
             break;
           
           case "screenTap":
-            onScreenTap( gesture );
+            //console.log("That was a screentap");
+            //onScreenTap( gesture );
             break;
 
-          case "keyTap":
-            onKeyTap( gesture );
-            break;
+               
+            
    
         }
+      }
+      else
+      {
+        switch( type ){
 
+          case "keyTap":
+           
+              console.log("Going to next picture, " + normalDirec);
+              currentImage = (currentImage + 1) % images.length;
+              onNextImage( gesture );
+              break;
+
+          case "screenTap":
+            console.log("Going to previous picture, " + frame.gestures.length);
+            currentImage = (currentImage + images.length - 1) % images.length;
+            onPrevImage( gesture );
+            break;   
+
+          case "circle":
+            if(firstcircle == 1)
+            {
+              circleTimes[0] = frame.timestamp;
+              firstcircle = 0;
+              onRefresh( hand );
+            }
+            if(frame.timestamp - circleTimes[0] <= 1000000)
+            {
+              console.log("Initial time was " + circleTimes[0]);
+              console.log("Cannot refresh so soon...  " + (frame.timestamp - circleTimes[0]));
+              break;
+            }
+            else
+            {
+                circleTimes[0] = frame.timestamp; 
+                onRefresh( hand );
+            }
+            
+        }
+
+      }
+      
+    }
+  }
       }
 
       updateKeyTaps();

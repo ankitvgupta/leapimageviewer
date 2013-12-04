@@ -6,7 +6,7 @@ body {
 }
 
 div.wrapper {
-	    width: 820px;
+	    width: 1200px;	   
 }
 
 h1 {
@@ -28,8 +28,8 @@ h3 {
 
 div#pan {
 	border: #dddddd 1px solid;
-	width: 400px;
-	height: 310px;
+	width: 800px;
+	height: 620px;
 	overflow: hidden;
 }
 
