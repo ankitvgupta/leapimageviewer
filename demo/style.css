@@ -6,12 +6,12 @@ body {
 }
 
 div.wrapper {
-	    width: 1200px;	   
+	    width: 100%;	   
 }
 
 h1 {
-   margin-right: 10px;
-   margin-left: 450px;
+	text-align: center;
+  
 }
 
 
@@ -29,8 +29,8 @@ div#pan {
 div#pan {
   display: block;
   	margin-top: -35px;
-    margin-left: 280px;
-    margin-right: 0 }
+    margin-left: auto;
+    margin-right: auto }
 }
 
 
