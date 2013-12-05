@@ -16,6 +16,84 @@
 
 <script type="text/javascript" src="http://www.jqueryscript.net/demo/jQuery-Plugin-For-Sliding-Sidebar-Menu-jQuery-Sidebar/src/jquery.sidebar.js" ></script>
 <script>
+ var images = [
+    "http://benlumley.co.uk/dev/panzoom/example/sample.jpg",
+    "http://benlumley.co.uk/dev/panzoom/example/sample2.jpg",
+    "http://benlumley.co.uk/dev/panzoom/example/sample3.jpg"
+];
+function refresher() {
+ 
+        console.log("entering refresher");
+        sliderLeft=$('#thumbScroller .container').position().left;
+        padding=$('#outer_container').css('paddingRight').replace("px", "");
+        sliderWidth=$(window).width()-padding;
+        $('#thumbScroller').css('width',sliderWidth);
+        var totalContent=0;
+        $('#thumbScroller .content').each(function () {
+          totalContent+=$(this).innerWidth();
+          $('#thumbScroller .container').css('width',totalContent);
+        });
+        $('#thumbScroller').mousemove(function(e){
+          if($('#thumbScroller  .container').width()>sliderWidth){
+            var mouseCoords=(e.pageX - this.offsetLeft);
+            var mousePercentX=mouseCoords/sliderWidth;
+            var destX=-(((totalContent-(sliderWidth))-sliderWidth)*(mousePercentX));
+            var thePosA=mouseCoords-destX;
+            var thePosB=destX-mouseCoords;
+            var animSpeed=600; //ease amount
+            var easeType='easeOutCirc';
+            if(mouseCoords==destX){
+              $('#thumbScroller .container').stop();
+            }
+            else if(mouseCoords>destX){
+              //$('#thumbScroller .container').css('left',-thePosA); //without easing
+              $('#thumbScroller .container').stop().animate({left: -thePosA}, animSpeed,easeType); //with easing
+            }
+            else if(mouseCoords<destX){
+              //$('#thumbScroller .container').css('left',thePosB); //without easing
+              $('#thumbScroller .container').stop().animate({left: thePosB}, animSpeed,easeType); //with easing
+            }
+          }
+        });
+        $('#thumbScroller  .thumb').each(function () {
+          $(this).fadeTo(fadeSpeed, 0.6);
+        });
+        var fadeSpeed=200;
+        $('#thumbScroller .thumb').hover(
+        function(){ //mouse over
+          $(this).fadeTo(fadeSpeed, 1);
+        },
+        function(){ //mouse out
+          $(this).fadeTo(fadeSpeed, 0.6);
+        }
+      );
+      }
+
+function upload()
+  {
+      var url = document.getElementById('input').value;
+      console.log("upload attempted, " + url);
+      images.push(url);
+      console.log(images);
+      var htmls = "";
+
+        for(var g = 0; g < images.length; g++)
+        {
+            htmls += "<div class=\"content\"><div><a href=\"#\"><img src=\""; 
+            htmls += images[g]; 
+            htmls += "\" alt=\"images/";
+            htmls += g+1;
+            htmls += ".jpg\" class=\"thumb\" /></a></div></div>";
+
+          
+        }
+        console.log(htmls);
+        $(".container").html(htmls);
+      redoimages();
+      refresher();
+      return false;
+
+  }
 function redoimages() {
 
               
@@ -52,68 +130,6 @@ function redoimages() {
         //the user will be able to see the full image
         makeScrollable();
         
-        //clicking on a thumb...
-        $thumbScroller.find('.content').bind('click',function(e){
-          var $content= $(this);
-          var $elem   = $content.find('img');
-          //keep track of the current clicked thumb
-          //it will be used for the navigation arrows
-          current   = $content.index()+1;
-          //get the positions of the clicked thumb
-          var pos_left  = $elem.offset().left;
-          var pos_top   = $elem.offset().top;
-          //clone the thumb and place
-          //the clone on the top of it
-          
-          
-          var windowW = $(window).width();
-          var windowH = $(window).height();
-          //animate the clone to the center of the page
-          $clone.stop()
-          .animate({
-            'left': windowW/2 + 'px',
-            'top': windowH/2 + 'px',
-            'margin-left' :-$clone.width()/2 -5 + 'px',
-            'margin-top': -$clone.height()/2 -5 + 'px'
-          },500,
-          function(){
-            var $theClone   = $(this);
-            var ratio   = $clone.width()/120;
-            var final_w   = 400*ratio;
-            
-            
-          
-            
-            
-            //expand the clone when large image is loaded
-            $('<img class="fp_preview"/>').load(function(){
-              var $newimg     = $(this);
-              var $currImage  = $('#fp_gallery').children('img:first');
-              $newimg.insertBefore($currImage);
-
-              //expand clone
-              $theClone.animate({
-                'opacity'   : 0,
-                'top'     : windowH/2 + 'px',
-                'left'      : windowW/2 + 'px',
-                'margin-top'  : '-200px',
-                'margin-left' : -final_w/2 + 'px',
-                'width'     : final_w + 'px',
-                'height'    : '400px'
-              },1000,function(){$(this).remove();});
-              //now we have two large images on the page
-              //fadeOut the old one so that the new one gets shown
-              $currImage.fadeOut(2000,function(){
-                $(this).remove();
-              });
-              //show the navigation arrows
-              showNav();
-            }).attr('src',$elem.attr('alt'));
-          });
-          //hide the thumbs container
-          hideThumbs();
-          e.preventDefault();
-        });
         
         //clicking on the "show thumbs"
         //displays the thumbs container and hides
@@ -223,33 +239,10 @@ function redoimages() {
           event.preventDefault();
           initPanZoom();
         });
-
+ 
   });
 
-  function upload()
-  {
-      var url = document.getElementById('input').value;
-      console.log("upload attempted, " + url);
-      images.push(url);
-      console.log(images);
-      var htmls = "";
 
-        for(var g = 0; g < images.length; g++)
-        {
-            htmls += "<div class=\"content\"><div><a href=\"#\"><img src=\""; 
-            htmls += images[g]; 
-            htmls += "\" alt=\"images/";
-            htmls += g+1;
-            htmls += ".jpg\" class=\"thumb\" /></a></div></div>";
-
-          
-        }
-        console.log(htmls);
-        $(".container").html(htmls);
-      redoimages();
-      return false;
-
-  }
   </script>
   <style>
       span.reference{
@@ -281,7 +274,7 @@ function redoimages() {
       }
     </style>
     <script type="text/javascript">
-      $(window).load(function() {
+      $(window).load(function () {
 
      
         
@@ -479,11 +472,7 @@ function redoimages() {
     var SCREENTAP_START_SIZE = 30;
     currentImage = 0;
     
-    var images = [
-    "http://benlumley.co.uk/dev/panzoom/example/sample.jpg",
-    "http://benlumley.co.uk/dev/panzoom/example/sample2.jpg",
-    "http://benlumley.co.uk/dev/panzoom/example/sample3.jpg"
-];
+   
 
       //for(int t= 0; t < images.length; t++)
          //       {
@@ -950,7 +939,7 @@ function redoimages() {
 
               var htmls = "";
 
-        for(var g = 0; g < 3; g++)
+        for(var g = 0; g < images.length; g++)
         {
             htmls += "<div class=\"content\"><div><a href=\"#\"><img src=\""; 
             htmls += images[g]; 
