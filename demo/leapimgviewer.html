@@ -80,6 +80,20 @@
     </style>
     <script type="text/javascript">
       $(window).load(function() {
+
+        var html = "";
+
+        for(var g = 0; g < images.length; g++)
+        {
+            html += "<div class=\"content\"><div><a href=\"#\"><img src=\""; 
+            html += images[g]; 
+            html += "\" alt=\"images/1.jpg\" class=\"thumb\" /></a></div></div>";
+           
+
+          
+        }
+        $("#thumbScroller .container").html(html);
+        
         sliderLeft=$('#thumbScroller .container').position().left;
         padding=$('#outer_container').css('paddingRight').replace("px", "");
         sliderWidth=$(window).width()-padding;
@@ -157,7 +171,81 @@
 
      
     </div>
-     
+        <div id="fp_gallery" class="fp_gallery">
+
+      
+      
+     <div id="outer_container">
+        <div id="thumbScroller">
+          <div class="container">
+            <div class="content">
+              <div><a href="#"><img src="https://fbcdn-sphotos-h-a.akamaihd.net/hphotos-ak-ash3/286203_10151629093801607_1595096387_o.jpg" alt="images/1.jpg" class="thumb" /></a></div>
+            </div>
+            <div class="content">
+              <div><a href="#"><img src="https://scontent-a-iad.xx.fbcdn.net/hphotos-ash3/601423_10151281280786607_1290656621_n.jpg" class="thumb" /></a></div>
+            </div>
+            <div class="content">
+              <div><a href="#"><img src="https://fbcdn-sphotos-h-a.akamaihd.net/hphotos-ak-ash3/286203_10151629093801607_1595096387_o.jpg" alt="images/3.jpg" class="thumb" /></a></div>
+            </div>
+            <div class="content">
+              <div><a href="#"><img src="https://fbcdn-sphotos-h-a.akamaihd.net/hphotos-ak-ash3/286203_10151629093801607_1595096387_o.jpg" alt="images/4.jpg" class="thumb" /></a></div>
+            </div>
+            <div class="content">
+              <div><a href="#"><img src="https://fbcdn-sphotos-h-a.akamaihd.net/hphotos-ak-ash3/286203_10151629093801607_1595096387_o.jpg" alt="images/5.jpg" class="thumb" /></a></div>
+            </div>
+            <div class="content">
+              <div><a href="#"><img src="https://fbcdn-sphotos-h-a.akamaihd.net/hphotos-ak-ash3/286203_10151629093801607_1595096387_o.jpg" alt="images/6.jpg" class="thumb" /></a></div>
+            </div>
+            <div class="content">
+              <div><a href="#"><img src="https://fbcdn-sphotos-h-a.akamaihd.net/hphotos-ak-ash3/286203_10151629093801607_1595096387_o.jpg" alt="images/7.jpg" class="thumb" /></a></div>
+            </div>
+            <div class="content">
+              <div><a href="#"><img src="https://fbcdn-sphotos-h-a.akamaihd.net/hphotos-ak-ash3/286203_10151629093801607_1595096387_o.jpg" alt="images/8.jpg" class="thumb" /></a></div>
+            </div>
+            <div class="content">
+              <div><a href="#"><img src="https://fbcdn-sphotos-h-a.akamaihd.net/hphotos-ak-ash3/286203_10151629093801607_1595096387_o.jpg" alt="images/9.jpg" class="thumb" /></a></div>
+            </div>
+            <div class="content">
+              <div><a href="#"><img src="https://fbcdn-sphotos-h-a.akamaihd.net/hphotos-ak-ash3/286203_10151629093801607_1595096387_o.jpg" alt="images/10.jpg" class="thumb" /></a></div>
+            </div>
+            <div class="content">
+              <div><a href="#"><img src="https://fbcdn-sphotos-h-a.akamaihd.net/hphotos-ak-ash3/286203_10151629093801607_1595096387_o.jpg" alt="images/11.jpg" class="thumb" /></a></div>
+            </div>
+            <div class="content">
+              <div><a href="#"><img src="https://fbcdn-sphotos-h-a.akamaihd.net/hphotos-ak-ash3/286203_10151629093801607_1595096387_o.jpg" alt="images/12.jpg" class="thumb" /></a></div>
+            </div>
+            <div class="content">
+              <div><a href="#"><img src="https://fbcdn-sphotos-h-a.akamaihd.net/hphotos-ak-ash3/286203_10151629093801607_1595096387_o.jpg" alt="images/13.jpg" class="thumb" /></a></div>
+            </div>
+            <div class="content">
+              <div><a href="#"><img src="https://fbcdn-sphotos-h-a.akamaihd.net/hphotos-ak-ash3/286203_10151629093801607_1595096387_o.jpg" alt="images/14.jpg" class="thumb" /></a></div>
+            </div>
+            <div class="content">
+              <div><a href="#"><img src="https://fbcdn-sphotos-h-a.akamaihd.net/hphotos-ak-ash3/286203_10151629093801607_1595096387_o.jpg" alt="images/15.jpg" class="thumb" /></a></div>
+            </div>
+            <div class="content">
+              <div><a href="#"><img src="https://fbcdn-sphotos-h-a.akamaihd.net/hphotos-ak-ash3/286203_10151629093801607_1595096387_o.jpg" alt="images/16.jpg" class="thumb" /></a></div>
+            </div>
+            <div class="content">
+              <div><a href="#"><img src="https://fbcdn-sphotos-h-a.akamaihd.net/hphotos-ak-ash3/286203_10151629093801607_1595096387_o.jpg" alt="images/17.jpg" class="thumb" /></a></div>
+            </div>
+            <div class="content">
+              <div><a href="#"><img src="https://fbcdn-sphotos-h-a.akamaihd.net/hphotos-ak-ash3/286203_10151629093801607_1595096387_o.jpg" alt="images/18.jpg" class="thumb" /></a></div>
+            </div>
+            <div class="content">
+              <div><a href="#"><img src="https://fbcdn-sphotos-h-a.akamaihd.net/hphotos-ak-ash3/286203_10151629093801607_1595096387_o.jpg" alt="images/19.jpg" class="thumb" /></a></div>
+            </div>
+            <div class="content">
+              <div><a href="#"><img src="https://fbcdn-sphotos-h-a.akamaihd.net/hphotos-ak-ash3/286203_10151629093801607_1595096387_o.jpg" alt="images/20.jpg" class="thumb" /></a></div>
+            </div>
+            <div class="content">
+              <div><a href="#"><img src="https://fbcdn-sphotos-h-a.akamaihd.net/hphotos-ak-ash3/286203_10151629093801607_1595096387_o.jpg" alt="images/21.jpg" class="thumb" /></a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="fp_thumbtoggle" class="fp_thumbtoggle">View Thumbs</div>
+    </div>
      
   <script src="js/leap.min.js"></script>
 
@@ -183,6 +271,13 @@
     "http://benlumley.co.uk/dev/panzoom/example/sample3.jpg"
 ];
 
+      //for(int t= 0; t < images.length; t++)
+         //       {
+
+                 
+                  //$('"#thumbScroller .container"').append( "<div class=\"content\"><div><a href=\"#\"><img src=\"" + images[t] + "\" class =\"thumb\"/></a></div></div>" );
+           //     }
+    
     
 
     /*
@@ -631,22 +726,7 @@
 
 
     </script>
-    <div id="fp_gallery" class="fp_gallery">
 
-      
-      
-      <div id="outer_container">
-        <div id="thumbScroller">
-          <div class="container">
-            
-
-            
-              
-          </div>
-        </div>
-      </div>
-      <div id="fp_thumbtoggle" class="fp_thumbtoggle">View Thumbs</div>
-    </div>
        
 
         <!-- The JavaScript -->
@@ -815,15 +895,8 @@
             var top = (e.pageY - $(document).scrollTop()/2) ;
             $(document).scrollTop(top);
                     });
-        }
-
-         for(int t= 0; t < images.length; t++)
-                {
-                  $("#outer_container .container").html("Hello");
-                  //$('"#thumbScroller .container"').append( "<div class=\"content\"><div><a href=\"#\"><img src=\"" + images[t] + "\" class =\"thumb\"/></a></div></div>" );
-                }
-            });
-
+        }});
+          
 
                
             
