@@ -35,7 +35,7 @@
         initPanZoom();
 
   // init the image switcher
-  $('#thumbScroller img').bind('click', function () {
+  $(' img').bind('click', function () {
   $('#pan img').attr('src', $(this).attr('src'));
   });
 
@@ -82,21 +82,7 @@
     </style>
     <script type="text/javascript">
       $(window).load(function() {
-        $('#thumbScroller img').bind('click', function () {
-  $('#pan img').attr('src', $(this).attr('src'));
-  });
 
-        // init the init button (for testing destroy/recreate)
-        $('#reinit').bind('click', function (event) {
-          if ($('#pan img').data('panZoom')) {
-            alert('Click destroy before trying to re-initialise panZoom');
-            return;
-          }
-          event.preventDefault();
-          initPanZoom();
-        });
-
-  });
      
         
         sliderLeft=$('#thumbScroller .container').position().left;
