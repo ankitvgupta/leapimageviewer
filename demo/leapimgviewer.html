@@ -16,10 +16,12 @@
 
 <script type="text/javascript" src="http://www.jqueryscript.net/demo/jQuery-Plugin-For-Sliding-Sidebar-Menu-jQuery-Sidebar/src/jquery.sidebar.js" ></script>
 <script>
+var sidebaropen = 0;
  var images = [
     "http://benlumley.co.uk/dev/panzoom/example/sample.jpg",
     "http://benlumley.co.uk/dev/panzoom/example/sample2.jpg",
-    "http://benlumley.co.uk/dev/panzoom/example/sample3.jpg"
+    "http://benlumley.co.uk/dev/panzoom/example/sample3.jpg",
+    "http://wp.streetwise.co/wp-content/uploads//2013/08/1.-Harvard.jpg"
 ];
 function refresher() {
  
@@ -204,6 +206,10 @@ function redoimages() {
 
 
   $(document).ready(function () {
+
+
+
+
         function initPanZoom() {
           $('#pan img').panZoom({
         'zoomIn'   : $('#zoomin'),
@@ -339,12 +345,10 @@ function redoimages() {
 
 
       <div id="pan">
-        <img src="http://benlumley.co.uk/dev/panzoom/example/sample.jpg">
+        <img src="">
       </div>
 
-      <script>
-      $('#pan img').panZoom( 'fit');  
-      </script>
+
 
 <div id="myDiv"><img id="myImage" src="http://img440.imageshack.us/img440/2817/brightnessso8.jpg" style="position:fixed; top:0px; right:0px"></div>
 <script>
@@ -391,67 +395,7 @@ function redoimages() {
         <div id="thumbScroller">
           <div class="container">
             <div class="content">
-              <div><a href="#"><img src="https://fbcdn-sphotos-h-a.akamaihd.net/hphotos-ak-ash3/286203_10151629093801607_1595096387_o.jpg" alt="images/1.jpg" class="thumb" /></a></div>
-            </div>
-            <div class="content">
-              <div><a href="#"><img src="https://scontent-a-iad.xx.fbcdn.net/hphotos-ash3/601423_10151281280786607_1290656621_n.jpg" class="thumb" /></a></div>
-            </div>
-            <div class="content">
-              <div><a href="#"><img src="https://fbcdn-sphotos-h-a.akamaihd.net/hphotos-ak-ash3/286203_10151629093801607_1595096387_o.jpg" alt="images/3.jpg" class="thumb" /></a></div>
-            </div>
-            <div class="content">
-              <div><a href="#"><img src="https://fbcdn-sphotos-h-a.akamaihd.net/hphotos-ak-ash3/286203_10151629093801607_1595096387_o.jpg" alt="images/4.jpg" class="thumb" /></a></div>
-            </div>
-            <div class="content">
-              <div><a href="#"><img src="https://fbcdn-sphotos-h-a.akamaihd.net/hphotos-ak-ash3/286203_10151629093801607_1595096387_o.jpg" alt="images/5.jpg" class="thumb" /></a></div>
-            </div>
-            <div class="content">
-              <div><a href="#"><img src="https://fbcdn-sphotos-h-a.akamaihd.net/hphotos-ak-ash3/286203_10151629093801607_1595096387_o.jpg" alt="images/6.jpg" class="thumb" /></a></div>
-            </div>
-            <div class="content">
-              <div><a href="#"><img src="https://fbcdn-sphotos-h-a.akamaihd.net/hphotos-ak-ash3/286203_10151629093801607_1595096387_o.jpg" alt="images/7.jpg" class="thumb" /></a></div>
-            </div>
-            <div class="content">
-              <div><a href="#"><img src="https://fbcdn-sphotos-h-a.akamaihd.net/hphotos-ak-ash3/286203_10151629093801607_1595096387_o.jpg" alt="images/8.jpg" class="thumb" /></a></div>
-            </div>
-            <div class="content">
-              <div><a href="#"><img src="https://fbcdn-sphotos-h-a.akamaihd.net/hphotos-ak-ash3/286203_10151629093801607_1595096387_o.jpg" alt="images/9.jpg" class="thumb" /></a></div>
-            </div>
-            <div class="content">
-              <div><a href="#"><img src="https://fbcdn-sphotos-h-a.akamaihd.net/hphotos-ak-ash3/286203_10151629093801607_1595096387_o.jpg" alt="images/10.jpg" class="thumb" /></a></div>
-            </div>
-            <div class="content">
-              <div><a href="#"><img src="https://fbcdn-sphotos-h-a.akamaihd.net/hphotos-ak-ash3/286203_10151629093801607_1595096387_o.jpg" alt="images/11.jpg" class="thumb" /></a></div>
-            </div>
-            <div class="content">
-              <div><a href="#"><img src="https://fbcdn-sphotos-h-a.akamaihd.net/hphotos-ak-ash3/286203_10151629093801607_1595096387_o.jpg" alt="images/12.jpg" class="thumb" /></a></div>
-            </div>
-            <div class="content">
-              <div><a href="#"><img src="https://fbcdn-sphotos-h-a.akamaihd.net/hphotos-ak-ash3/286203_10151629093801607_1595096387_o.jpg" alt="images/13.jpg" class="thumb" /></a></div>
-            </div>
-            <div class="content">
-              <div><a href="#"><img src="https://fbcdn-sphotos-h-a.akamaihd.net/hphotos-ak-ash3/286203_10151629093801607_1595096387_o.jpg" alt="images/14.jpg" class="thumb" /></a></div>
-            </div>
-            <div class="content">
-              <div><a href="#"><img src="https://fbcdn-sphotos-h-a.akamaihd.net/hphotos-ak-ash3/286203_10151629093801607_1595096387_o.jpg" alt="images/15.jpg" class="thumb" /></a></div>
-            </div>
-            <div class="content">
-              <div><a href="#"><img src="https://fbcdn-sphotos-h-a.akamaihd.net/hphotos-ak-ash3/286203_10151629093801607_1595096387_o.jpg" alt="images/16.jpg" class="thumb" /></a></div>
-            </div>
-            <div class="content">
-              <div><a href="#"><img src="https://fbcdn-sphotos-h-a.akamaihd.net/hphotos-ak-ash3/286203_10151629093801607_1595096387_o.jpg" alt="images/17.jpg" class="thumb" /></a></div>
-            </div>
-            <div class="content">
-              <div><a href="#"><img src="https://fbcdn-sphotos-h-a.akamaihd.net/hphotos-ak-ash3/286203_10151629093801607_1595096387_o.jpg" alt="images/18.jpg" class="thumb" /></a></div>
-            </div>
-            <div class="content">
-              <div><a href="#"><img src="https://fbcdn-sphotos-h-a.akamaihd.net/hphotos-ak-ash3/286203_10151629093801607_1595096387_o.jpg" alt="images/19.jpg" class="thumb" /></a></div>
-            </div>
-            <div class="content">
-              <div><a href="#"><img src="https://fbcdn-sphotos-h-a.akamaihd.net/hphotos-ak-ash3/286203_10151629093801607_1595096387_o.jpg" alt="images/20.jpg" class="thumb" /></a></div>
-            </div>
-            <div class="content">
-              <div><a href="#"><img src="https://fbcdn-sphotos-h-a.akamaihd.net/hphotos-ak-ash3/286203_10151629093801607_1595096387_o.jpg" alt="images/21.jpg" class="thumb" /></a></div>
+              <div></div>
             </div>
           </div>
         </div>
@@ -632,6 +576,8 @@ function redoimages() {
 
         $('#pan img').attr('src', images[currentImage]);
 
+
+
     }
     function onPrevImage( gesture ){
 
@@ -649,9 +595,26 @@ function redoimages() {
           //$( "#reinit" ).trigger( "click" );
           $('#pan img').panZoom( 'fit');  
         }
+
+
     }
 
+    function onSidebar( ){
+      if(sidebaropen == 0)
+      {
+        $( "#demo_menu3" ).mouseenter();
+        $( "#demo_menu3" ).click();
+        sidebaropen = 1;
+      }
+      else if (sidebaropen == 1)
+      {
+        $( "#demo_menu3" ).mouseleave();
+        sidebaropen = 0;
+      }
+        
 
+
+    }
     function updateKeyTaps(){
 
       for( var i = 0; i < keyTaps.length; i++ ){
@@ -667,6 +630,8 @@ function redoimages() {
       }
 
     }
+
+
 
 
     function drawKeyTaps(){
@@ -870,6 +835,13 @@ function redoimages() {
             //console.log("That was a screentap");
             //onScreenTap( gesture );
             break;
+          case "keyTap":
+              if(frame.fingers.length == 2)
+              {
+          
+                onSidebar();
+              }
+              break;
 
                
             
