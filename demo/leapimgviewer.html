@@ -82,19 +82,22 @@
     </style>
     <script type="text/javascript">
       $(window).load(function() {
+        $('#thumbScroller img').bind('click', function () {
+  $('#pan img').attr('src', $(this).attr('src'));
+  });
 
-        var html = "";
+        // init the init button (for testing destroy/recreate)
+        $('#reinit').bind('click', function (event) {
+          if ($('#pan img').data('panZoom')) {
+            alert('Click destroy before trying to re-initialise panZoom');
+            return;
+          }
+          event.preventDefault();
+          initPanZoom();
+        });
 
-        for(var g = 0; g < images.length; g++)
-        {
-            html += "<div class=\"content\"><div><a href=\"#\"><img src=\""; 
-            html += images[g]; 
-            html += "\" alt=\"images/1.jpg\" class=\"thumb\" /></a></div></div>";
-           
-
-          
-        }
-        $("#thumbScroller .container").html(html);
+  });
+     
         
         sliderLeft=$('#thumbScroller .container').position().left;
         padding=$('#outer_container').css('paddingRight').replace("px", "");
@@ -247,7 +250,7 @@
           </div>
         </div>
       </div>
-      <div id="fp_thumbtoggle" class="fp_thumbtoggle">View Thumbs</div>
+   
     </div>
      
   <script src="js/leap.min.js"></script>
@@ -736,6 +739,21 @@
 
         <script type="text/javascript">
             $(function() {
+
+              var htmls = "";
+
+        for(var g = 0; g < 3; g++)
+        {
+            htmls += "<div class=\"content\"><div><a href=\"#\"><img src=\""; 
+            htmls += images[g]; 
+            htmls += "\" alt=\"images/";
+            htmls += g+1;
+            htmls += ".jpg\" class=\"thumb\" /></a></div></div>";
+
+          
+        }
+        console.log(htmls);
+        $(".container").html(htmls);
         //current thumb's index being viewed
         var current     = -1;
         //cache some elements
