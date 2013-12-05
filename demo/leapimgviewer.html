@@ -50,6 +50,14 @@
         });
 
   });
+
+  function upload()
+  {
+      var url = document.getElementById('input').value;
+      console.log("upload attempted, " + url);
+      return false;
+
+  }
   </script>
   <style>
       span.reference{
@@ -150,6 +158,11 @@
 
       <div id="output">
         <h2>Output</h2>
+        <form onsubmit="upload(); return false;">
+          <input type="text" name="url" id="input">
+          <button type="submit">Upload</button>
+        </form>
+        
         <p>View the current co-ordinates live. You will probably want hidden fields, but whilst they are visible, try changing the numbers.</p>
         <table>
           <tr>
