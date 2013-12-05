@@ -42,7 +42,7 @@
     out_y2            : false,
     min_width         : 20,
     min_height        : 20,
-    zoom_step         : 1,
+    zoom_step         : .3,
     pan_step          : 1,
     debug             : false,
     directedit        : false,
@@ -160,17 +160,23 @@
     'panLeft': function () {
       var data = this.data('panZoom');
       var steps = getStepDimensions.apply(this);
-      data.position.x1 -= steps.pan.x;
-      data.position.x2 -= steps.pan.x;
-      methods.updatePosition.apply(this);
+      if(data.position.x2 > 1/10*data.viewport_dimensions.x)
+      {
+        data.position.x1 -= steps.pan.x;
+        data.position.x2 -= steps.pan.x;
+        methods.updatePosition.apply(this);
+      }
     },
 
     'panRight': function () {
       var data = this.data('panZoom');
       var steps = getStepDimensions.apply(this);
-      data.position.x1 = data.position.x1*1 + steps.pan.x;
-      data.position.x2 = data.position.x2*1 + steps.pan.x;
-      methods.updatePosition.apply(this);
+      if(data.position.x1 < 9/10*data.viewport_dimensions.x)
+      {
+        data.position.x1 = data.position.x1*1 + steps.pan.x;
+        data.position.x2 = data.position.x2*1 + steps.pan.x;
+        methods.updatePosition.apply(this);
+      }
     },
 
     'mouseWheel': function (delta) {

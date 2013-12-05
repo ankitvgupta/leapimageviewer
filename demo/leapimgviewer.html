@@ -334,9 +334,11 @@ function redoimages() {
 
 
       <div id="pan">
-        <img src="http://benlumley.co.uk/dev/panzoom/example/sample2.jpg">
+        <img src="http://benlumley.co.uk/dev/panzoom/example/sample.jpg">
       </div>
-
+      <script>
+      $('#pan img').panZoom( 'fit');  
+      </script>
 
       <ul
 <ul id="demo_menu3" >
@@ -359,21 +361,13 @@ function redoimages() {
         </script>
 
       <div id="output">
-        <h2>Output</h2>
+        <h2>Upload</h2>
         <form onsubmit="upload(); return false;">
           <input type="text" name="url" id="input">
           <button type="submit">Upload</button>
         </form>
         
-        <p>View the current co-ordinates live. You will probably want hidden fields, but whilst they are visible, try changing the numbers.</p>
-        <table>
-          <tr>
-            <td>x1: <input type="text" name="x1" value="0" id="x1"></td><td>x2: <input type="text" name="x2" value="0" id="x2"></td>
-          </tr>
-          <tr>
-            <td>y1: <input type="text" name="y1" value="0" id="y1"></td><td>y2: <input type="text" name="y2" value="0" id="y2"></td>
-          </tr>
-        </table>
+        
       </div>
 
      
