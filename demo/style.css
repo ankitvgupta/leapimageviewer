@@ -11,19 +11,9 @@ div.wrapper {
 
 h1 {
    margin-right: 10px;
-   margin-left: 30px;
+   margin-left: 450px;
 }
 
-h2 {
-   font-size: 18px;
-   margin-top: -100px;
-}
-
-h3 {
-   font-size: 16px;	
-   margin-top: 0;
-   margin-bottom: 5px;
-}
 
 /* if you are reading this, the below is the start of the css for the image and wrapper div for the panner - thats probably what you are interested in */
 
@@ -38,6 +28,7 @@ div#pan {
 /* this is extra stuff for #pan to get the layout right for the eg - not necessary */
 div#pan {
   display: block;
+  	margin-top: -35px;
     margin-left: 280px;
     margin-right: 0 }
 }
