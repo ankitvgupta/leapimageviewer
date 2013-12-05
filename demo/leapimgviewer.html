@@ -1,5 +1,3 @@
-
-<!DOCTYPE html>
 <html>
 
   <head>
@@ -50,11 +48,40 @@
         });
 
   });
+  var images = [
+    "http://benlumley.co.uk/dev/panzoom/example/sample.jpg",
+    "http://benlumley.co.uk/dev/panzoom/example/sample2.jpg",
+    "http://benlumley.co.uk/dev/panzoom/example/sample3.jpg"
+];
+
+ function loadimages()
+            {
+              var htmls = "";
+
+          for(var g = 0; g < images.length; g++)
+          {
+            htmls += "<div class=\"content\"><div><a href=\"#\"><img src=\""; 
+            htmls += images[g]; 
+            htmls += "\" alt=\"images/";
+            htmls += g+1;
+            htmls += ".jpg\" class=\"thumb\" /></a></div></div>";
+
+          
+          }
+              console.log(htmls);
+              console.log(images);
+              $(".container").html(htmls);
+
+            }
 
   function upload()
   {
       var url = document.getElementById('input').value;
+      images.push(url);
       console.log("upload attempted, " + url);
+      loadimages();
+
+
       return false;
 
   }
@@ -270,11 +297,7 @@
     var SCREENTAP_START_SIZE = 30;
     currentImage = 0;
     
-    var images = [
-    "http://benlumley.co.uk/dev/panzoom/example/sample.jpg",
-    "http://benlumley.co.uk/dev/panzoom/example/sample2.jpg",
-    "http://benlumley.co.uk/dev/panzoom/example/sample3.jpg"
-];
+  
 
       //for(int t= 0; t < images.length; t++)
          //       {
@@ -737,22 +760,14 @@
         <!-- The JavaScript -->
 
         <script type="text/javascript">
+
+           
+
+            loadimages();
+
             $(function() {
 
-              var htmls = "";
-
-        for(var g = 0; g < 3; g++)
-        {
-            htmls += "<div class=\"content\"><div><a href=\"#\"><img src=\""; 
-            htmls += images[g]; 
-            htmls += "\" alt=\"images/";
-            htmls += g+1;
-            htmls += ".jpg\" class=\"thumb\" /></a></div></div>";
-
-          
-        }
-        console.log(htmls);
-        $(".container").html(htmls);
+              
          $('img').bind('click', function () {
   $('#pan img').attr('src', $(this).attr('src'));
   });
