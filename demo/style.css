@@ -6,7 +6,8 @@ body {
 }
 
 div.wrapper {
-	    width: 1200px;	   
+	    width: 1200px;	
+	    color: green;   
 }
 
 h1 {
