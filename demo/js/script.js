@@ -87,55 +87,44 @@
 
     function onSwipe( gesture ){
 
+      // These two store the start and end positions of the gesture
+      var startPos = leapToScene( gesture.startPosition );
+      var pos = leapToScene( gesture.position);
 
-       var startPos = leapToScene( gesture.startPosition );
-       var pos = leapToScene( gesture.position);
+      // These are the unmodified versions
+      unmodstartPos = gesture.startPosition;
+      unmodendPos = gesture.position;
 
-       unmodstartPos = gesture.startPosition;
-       unmodendPos = gesture.position;
+      // This calculates the change in Y and the change in X
+      unmodDeltaY = Math.abs(gesture.startPosition[1] - gesture.position[1]);
+      unmodDeltaX = Math.abs(gesture.startPosition[0] - gesture.position[0]);
 
-       unmodDeltaY = Math.abs(gesture.startPosition[1] - gesture.position[1]);
-       unmodDeltaX = Math.abs(gesture.startPosition[0] - gesture.position[0]);
-
+      // Does different actions based on if there is a greater change in Y or greater change in X
       if (unmodDeltaY > unmodDeltaX)
       {   
-      if (pos[1] > startPos[1])
-         $('#pan img').panZoom( 'zoomIn');
-      else if(pos[1] < startPos[1])
-         $('#pan img').panZoom( 'zoomOut');
+        if (pos[1] > startPos[1])
+           $('#pan img').panZoom( 'zoomIn');
+        else if(pos[1] < startPos[1])
+           $('#pan img').panZoom( 'zoomOut');
       }
       else
       {  
-      if(pos[0] > startPos[0])
-          $('#pan img').panZoom( 'panRight');
-      else if(pos[0] < startPos[0])
-          $('#pan img').panZoom( 'panLeft');  
+        if(pos[0] > startPos[0])
+            $('#pan img').panZoom( 'panRight');
+        else if(pos[0] < startPos[0])
+            $('#pan img').panZoom( 'panLeft');  
       }
 
-
-
     }
 
-
-    function onKeyTap( gesture ){
-
-      var pos  = leapToScene( gesture.position );
-    
-      var time = frame.timestamp;
-
-      // keyTaps.push( [ pos[0] , pos[1] , time ] );
-    
-   //$('#pan img').panZoom( 'zoomOut');
-
-    }
-
-     function onNextImage( gesture ){
+    // Moves to the next image in the list (currentImage is pre-updated)
+    function onNextImage( gesture ){
 
         $('#pan img').attr('src', images[currentImage]);
 
-
-
     }
+
+    // Moves to the previous image in the list (currentImage is pre-updated)
     function onPrevImage( gesture ){
 
         $('#pan img').attr('src', images[currentImage]);
@@ -145,6 +134,7 @@
     function onRefresh( hand ){
         console.log("The number of fingers is " + hand.pointables.length);
 
+        // If there is one finger, does the refresh.
         if(hand.pointables.length == 1)
         {
           console.log("Refreshed!");
@@ -156,6 +146,7 @@
 
     }
 
+    // If the sidebar is open, close it. If it is closed, open it.
     function onSidebar( ){
       if(sidebaropen == 0)
       {
@@ -170,18 +161,6 @@
       }
         
 
-
-    }
-
-
-
-    function onScreenTap( gesture ){
-
-      var pos  = leapToScene( gesture.position );
-    
-      var time = frame.timestamp;
-
-      screenTaps.push( [ pos[0] , pos[1] , time ] );
 
     }
 
@@ -221,12 +200,14 @@
               switch( type ){
           
                 case "circle":
+                  // Deal with the case of 'fit' being called the first time
                   if(firstcircle == 1)
                   {
                     circleTimes[0] = frame.timestamp;
                     firstcircle = 0;
                     onRefresh ( hand );
                   }
+                  // Ignore attempts to refresh within a second of other attempts
                   if(frame.timestamp - circleTimes[0] <= 1000000)
                   {
                     console.log("Initial time was " + circleTimes[0]);
@@ -264,13 +245,14 @@
              switch( type ){
 
               case "keyTap":
-               
+                  // Change the currentImage and then call the image changer function
                   console.log("Going to next picture, " + normalDirec);
                   currentImage = (currentImage + 1) % images.length;
                   onNextImage( gesture );
                   break;
 
               case "screenTap":
+                // Change the currentImage and then call the image changer function
                 console.log("Going to previous picture, " + frame.gestures.length);
                 currentImage = (currentImage + images.length - 1) % images.length;
                 onPrevImage( gesture );
@@ -283,6 +265,7 @@
                   firstcircle = 0;
                   onRefresh( hand );
                 }
+                // Ignore cases where 'fit' is called more than once within a second
                 if(frame.timestamp - circleTimes[0] <= 1000000)
                 {
                   console.log("Initial time was " + circleTimes[0]);
