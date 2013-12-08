@@ -4,6 +4,8 @@ var sidebaropen = 0;
     "http://www.fas.harvard.edu/~memhall/images2/annen2.jpg",
     "http://mbadventure.files.wordpress.com/2011/05/harvard-birds-eye.jpg",
     "http://i2.cdn.turner.com/money/2010/09/27/pf/harvard_business_school.fortune/harvard_business_school.gi.top.jpg"];
+
+// This function and the next are used to deal with refreshing the image gallery when a new picture is uplaoded
 function refresher() {
  
         console.log("entering refresher");
@@ -72,6 +74,8 @@ function upload()
         }
         console.log(htmls);
         $(".container").html(htmls);
+      redoimages();
+      refresher();
       redoimages();
       refresher();
       return false;
