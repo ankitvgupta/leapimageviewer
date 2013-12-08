@@ -296,6 +296,7 @@
 
         var htmls = "";
 
+        // iterate over the images array 
         for(var g = 0; g < images.length; g++)
         {
             htmls += "<div class=\"content\"><div><a href=\"#\"><img src=\""; 
@@ -308,6 +309,7 @@
         }
         console.log(htmls);
         $(".container").html(htmls);
+        // change the big image to whichever image you click
         $('img').bind('click', function () {
         $('#pan img').attr('src', $(this).attr('src'));
         });
@@ -413,6 +415,7 @@
           hideNav();
         });
         
+        // these functions are from the image viewer gallery we use. See the design page for details on where to find it
         function hideThumbs(){
           $('#outer_container').stop().animate({'bottom':'-160px'},500);
           showThumbsBtn();
