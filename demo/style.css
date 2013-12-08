@@ -19,22 +19,27 @@ h1 {
 
 div#pan {
 	
-	width: 800px;
-	height: 620px;
+	width: 700px;
+	height: 520px;
 }
 
 /* and this is the end */
 
 /* this is extra stuff for #pan to get the layout right for the eg - not necessary */
 div#pan {
-  display: block;
+
     margin-left: auto;
     margin-right: auto }
 }
 
 
 
-
+div#upload
+{
+	position:absolute;
+	top:50px;
+	left:20px;
+}
 
 
 
