@@ -1,7 +1,8 @@
      $(window).load(function () {
 
      
-        
+        // These functions are from the thumbscroller library that loads images along the bottom
+        // See the design sheet for the url where the library can be found in more detail
         sliderLeft=$('#thumbScroller .container').position().left;
         padding=$('#outer_container').css('paddingRight').replace("px", "");
         sliderWidth=$(window).width()-padding;

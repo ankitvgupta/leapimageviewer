@@ -472,7 +472,7 @@
         
         }
         
-                function makeScrollable(){
+        function makeScrollable(){
           $(document).bind('mousemove',function(e){
             var top = (e.pageY - $(document).scrollTop()/2) ;
             $(document).scrollTop(top);

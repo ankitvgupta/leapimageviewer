@@ -14,45 +14,40 @@
       <script type="text/javascript"></script>
       <link rel="stylesheet" type="text/css" href="style3.css" />
 
-<script type="text/javascript" src="http://www.jqueryscript.net/demo/jQuery-Plugin-For-Sliding-Sidebar-Menu-jQuery-Sidebar/src/jquery.sidebar.js" ></script>
-<script type="text/javascript" src="js/settings.js">
+      <script type="text/javascript" src="http://www.jqueryscript.net/demo/jQuery-Plugin-For-Sliding-Sidebar-Menu-jQuery-Sidebar/src/jquery.sidebar.js" ></script>
+      <script type="text/javascript" src="js/settings.js"></script>
 
+      <style>
 
-  </script>
-
-  <style>
-
-      span.reference{
-        font-family:Arial;
-        position:fixed;
-        right:10px;
-        top:10px;
-        font-size:10px;
-      }
-      span.reference a{
-        color:#fff;
-        text-transform:uppercase;
-        text-decoration:none;
-        text-shadow:1px 1px 1px #000;
-        margin-left:20px;
-      }
-      span.reference a:hover{
-        color:#ddd;
-      }
-      h1.title{
-        width:919px;
-        height:148px;
-        position:fixed;
-        top:10px;
-        left:10px;
-        text-indent:-9000px;
-        background:transparent url(images/icons/title.png) no-repeat top left;
-        z-index:2;
-      }
-    </style>
-    <script type="text/javascript" src="js/load.js">
-      
-    </script>
+        span.reference{
+          font-family:Arial;
+          position:fixed;
+          right:10px;
+          top:10px;
+          font-size:10px;
+        }
+        span.reference a{
+          color:#fff;
+          text-transform:uppercase;
+          text-decoration:none;
+          text-shadow:1px 1px 1px #000;
+          margin-left:20px;
+        }
+        span.reference a:hover{
+          color:#ddd;
+        }
+        h1.title{
+          width:919px;
+          height:148px;
+          position:fixed;
+          top:10px;
+          left:10px;
+          text-indent:-9000px;
+          background:transparent url(images/icons/title.png) no-repeat top left;
+          z-index:2;
+        }
+      </style>
+      <script type="text/javascript" src="js/load.js"></script>
   </head>
   
   <body>
@@ -61,51 +56,51 @@
     <div class="wrapper">
       <h1><img src="coollogo_com-147145317.png" alt="Smiley face"></h1>
 
-   <div id="upload">
+    <div id="upload">
         <h2>Upload</h2>
         <form onsubmit="upload(); return false;">
           <input type="text" name="url" id="input">
           <button type="submit">Upload</button>
         </form> 
-      </div>
+    </div>
 
-      <div id="pan">
+    <div id="pan">
         <img src="">
-      </div>
+     </div>
 
 
 
 
-   
-<ul id="demo_menu3" >
-<li><a href="Documentation.pdf" >Zoom out </a></li>
-<li><a href="Documentation.pdf" >Zoom in </a></li>
-<li><a href="Documentation.pdf" >Pan left </a></li>
-<li><a href="Documentation.pdf" >Pan right </a></li>
-<li><a href="Documentation.pdf" >Refresh </a></li>
-<li><a href="Documentation.pdf" >Next Image </a></li>
-<li><a href="Documentation.pdf" >Previous Image </a></li>
-<li><a href="Documentation.pdf" >Upload </a></li>
+    <!-- This is the sidebar -->
+    <ul id="demo_menu3" >
+    <li><a href="Documentation.pdf" >Zoom out </a></li>
+    <li><a href="Documentation.pdf" >Zoom in </a></li>
+    <li><a href="Documentation.pdf" >Pan left </a></li>
+    <li><a href="Documentation.pdf" >Pan right </a></li>
+    <li><a href="Documentation.pdf" >Refresh </a></li>
+    <li><a href="Documentation.pdf" >Next Image </a></li>
+    <li><a href="Documentation.pdf" >Previous Image </a></li>
+    <li><a href="Documentation.pdf" >Upload </a></li>
 
-</ul>
+    </ul>
 
-<!-- See this link for access to the place we got the sidebar plugin from -->
-<a href="http://www.jqueryscript.net/menu/jQuery-Plugin-For-Sliding-Sidebar-Menu-jQuery-Sidebar.html"></a>
-<script type="text/javascript">
-// This script was kept here since it has to do with the sidebar immediately above it        
-        $("ul#demo_menu3").sidebar({
-            position:"right",
-          open:"click"
-          
-        });
-</script>
+    <!-- See this link for access to the place we got the sidebar plugin from -->
+    <a href="http://www.jqueryscript.net/menu/jQuery-Plugin-For-Sliding-Sidebar-Menu-jQuery-Sidebar.html"></a>
+    <script type="text/javascript">
+    // This script was kept here since it has to do with the sidebar immediately above it        
+            $("ul#demo_menu3").sidebar({
+                position:"right",
+              open:"click"
+              
+            });
+    </script>
 
    
      
     </div>
         <div id="fp_gallery" class="fp_gallery">
 
-      
+ <!-- The Horizontal Photo Bar will go here -->     
       
      <div id="outer_container">
         <div id="thumbScroller">
@@ -119,9 +114,10 @@
    
     </div>
      
+  <!-- This is the leap API -->   
   <script src="js/leap.min.js"></script>
 
-
+  <!-- This is one of our own script files -->
   <script src = "js/script.js"></script>
 
   </body>

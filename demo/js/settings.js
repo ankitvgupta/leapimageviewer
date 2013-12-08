@@ -126,6 +126,7 @@ function redoimages() {
           hideNav();
         });
         
+        // These are library functions. Please see the design.pdf to see the exact link that these originate from
         function hideThumbs(){
           $('#outer_container').stop().animate({'bottom':'-160px'},500);
           showThumbsBtn();
