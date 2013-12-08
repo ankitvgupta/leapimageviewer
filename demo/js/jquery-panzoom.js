@@ -302,7 +302,6 @@
       this.parent().bind('mousewheel.panZoom', function(event, delta) { event.preventDefault(); $(this).find('img').panZoom('mouseWheel', delta) } );
       data.bound_elements = data.bound_elements.add(this.parent());
     } else if (settings.mousewheel) {
-      alert('Mousewheel requires jquery-mousewheel by Brandon Aaron (https://github.com/brandonaaron/jquery-mousewheel) - please include it or disable mousewheel to remove this warning.')
     }
 
     // direct form input
@@ -316,7 +315,6 @@
         stop: function () { $(this).panZoom('dragComplete'); }
       });
     } else if (settings.draggable) {
-      alert('Draggable requires jQuery UI - please include jQuery UI or disable draggable to remove this warning.')
     }
 
     // image load
